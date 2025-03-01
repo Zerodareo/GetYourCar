@@ -1,0 +1,42 @@
+name: Deploy Get-Your-Car # Nom de ton workflow
+
+on:
+  push: # Déclenche le workflow quand tu pushes du code
+    branches: [main] # Branche à surveiller (ici, la branche "main")
+
+jobs:
+  deploy: # Nom de ton job de déploiement
+    runs-on: ubuntu-latest # Environnement d'exécution (Ubuntu ici)
+
+    steps:
+      - name: Checkout code # Récupère le code du repository
+        uses: actions/checkout@v3
+      
+      - name: Se connecter au serveur
+        uses: appleboy/ghaction-ssh@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+
+      - name: Set up PHP # Configure l'environnement PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1' # Version de PHP (adapte selon ton projet)
+
+      - name: Install dependencies # (Si tu as des dépendances Composer)
+        run: composer install
+
+      - name: Build # (Si tu as une étape de build, par exemple pour des assets)
+        run: npm run build # Adapte la commande si besoin
+
+      - name: Deploy to server # Déploiement vers ton serveur
+        uses: appleboy/ghaction-ssh@master
+        with:
+          host: ${{ secrets.SERVER_HOST }} # Hôte du serveur
+          username: ${{ secrets.SERVER_USERNAME }} # Nom d'utilisateur SSH
+          key: ${{ secrets.SERVER_PRIVATE_KEY }} # Clé privée SSH
+          script: |
+            # Commandes à exécuter sur le serveur pour le déploiement
+            cd /var/www/html/get-your-car # Chemin vers le dossier de ton site
+            git pull origin main # Mise à jour du code
+            # (Autres commandes, par exemple pour les migrations de base de données)

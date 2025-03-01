@@ -1,0 +1,52 @@
+body{
+    background-color: white;
+    height: 90em;
+    width: 100%;
+}
+#titlebody{
+    background-color: #18a5c1;
+    height: 14%;
+    margin-top: -42px;
+    margin-left: -45px;
+    margin-block-end: 14px;
+}
+h1{
+    text-align: left;
+    font-weight: bold;
+    margin-top: -8%;
+    font-family: 'Open Sans';
+    margin-left: 40%;
+    position: absolute;
+}
+.icon{
+    height: 22%;
+    margin-top: -11.5%;
+    position: absolute;
+    border-radius: 100%;
+    margin-left: 28%;
+}
+.subtitletext{
+    font-weight: lighter;
+}
+.imagesection1{
+    width: 30%;
+    height: 30%;
+    background: green;
+    margin-left: 8%;
+}
+.image1{
+    box-shadow: 10px 5px 5px grey;
+    height: 100%;
+    width: 100%;
+}
+.image2{
+    box-shadow: 10px 5px 5px grey;
+    height: 102%;
+    width: 67%;
+    margin-top: 8%;
+}
+.imagesection2{
+    height: 30%;
+    margin-top: -39%;
+    margin-left: 52%;
+}
